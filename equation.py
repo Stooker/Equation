@@ -2,16 +2,46 @@ import math
 
 
 class Equation:
+    """
+    A class to represent equation
+
+    ...
+
+    Attributes
+    ----------
+    a: float
+        factor a of equation *(x**2)
+    b: float
+        factor b of equation *(x)
+    c: float
+        factor c of equation *(1)
+    """
+
     def __init__(self, a, b, c):
         self.a = a
         self.b = b
         self.c = c
 
     def calculate_delta(self):
+        """Calculate delta of equation"""
+
         delta = self.b**2 - 4*self.a*self.c
         return delta
 
     def solve(self):
+        """
+        Calculate equation if there is factor "a"
+
+        Returns
+        -------
+        None
+            If there is no solving to equation
+        Float
+            If there is solution to equation
+        Tuple(float)
+            If there are two solutions to equation
+        """
+
         if self.a == 0:
             self.solve_normal_equation()
         else:
@@ -21,7 +51,7 @@ class Equation:
                 print(f'Równanie: {self.__str__()} nie posiada rozwiązań')
                 return None
             elif delta == 0:
-                x = self.b / 2*self.a
+                x = -self.b / (2*self.a)
                 print(f'Równanie: {self.__str__()} ma jedno rozwiązanie: x = {x}')
                 return x
             else:
@@ -31,6 +61,17 @@ class Equation:
                 return x_1, x_2
 
     def solve_normal_equation(self):
+        """
+        Calculate equation if there is no factor "a" and returns solution
+
+        Returns
+        -------
+            None
+                If there is no solving to equation
+            Float
+                If there is solution to equation
+        """
+
         if self.b == 0:
             if self.c == 0:
                 print(f'Równanie: 0 = 0 jest prawdą i nie potrzebuje być rozwiązywane')
@@ -46,6 +87,8 @@ class Equation:
 
     @staticmethod
     def ask_for_input(char='a'):
+        """Asks user for value until input can be cast to float"""
+
         while True:
             try:
                 num = float(input(f"Podaj współczynnik {char}: "))
@@ -55,6 +98,8 @@ class Equation:
 
     @staticmethod
     def ask_for_continue():
+        """Asks user for value until input is valid"""
+
         answer = ''
         while answer not in ('T', 'N', 't', 'n'):
             answer = input("Czy rozwiązać kolenjne równanie? [T/N]: ")

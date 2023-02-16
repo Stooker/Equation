@@ -14,4 +14,3 @@ if __name__ == '__main__':
         eq = Equation(a, b, c)
         eq.solve()
         answer = Equation.ask_for_continue()
-
